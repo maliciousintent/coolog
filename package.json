@@ -20,14 +20,19 @@
     "type": "git",
     "url": "git://github.com/firejune/clog.git"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
-  }],
-  "bugs" : {
-    "url" : "http://github.com/firejune/clog/issues"
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "bugs": {
+    "url": "http://github.com/firejune/clog/issues"
   },
   "engines": {
     "node": ">= 0.4.0"
+  },
+  "dependencies": {
+    "colors": "~0.6.0-1"
   }
 }
