@@ -1,9 +1,9 @@
 {
-  "name": "clog",
-  "author": "Firejune (http://firejune.com/)",
+  "name": "coolog",
+  "author": "Simone Lusenti <simone@plasticpanda.com>",
   "version": "0.1.5",
-  "description": "Colorful console output in NodeJS.",
-  "homepage": "http://github.com/firejune/clog",
+  "description": "Colorful logging in NodeJS.",
+  "homepage": "http://github.com/plasticpanda/coolog",
   "keywords": [
     "color",
     "console",
@@ -18,20 +18,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/firejune/clog.git"
+    "url": "git://github.com/plasticpanda/coolog.git"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
-  "bugs": {
-    "url": "http://github.com/firejune/clog/issues"
-  },
-  "engines": {
-    "node": ">= 0.4.0"
-  },
+  "license": "MIT"
   "dependencies": {
     "colors": "~0.6.0-1"
   }

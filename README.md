@@ -1,7 +1,7 @@
 Coolog
 ======
 
-Colour logging for node.js
+Colourful logging in node.js
 
 
 ## Install ##
