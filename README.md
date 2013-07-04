@@ -14,7 +14,15 @@ npm -S install coolog
 ## Use ##
 
 ```nodejs
-var logger = require('coolog')('main.js', true /* don't be verbose */);
+var coolog = require('coolog')
+  , logger = coolog.logger('main.js', true /* don't be verbose */);
+  
+  
+coolog.on('log', function () {
+  // Global event handler
+  console.log(arguments);
+});
+  
 logger.log('Message or obj', ...);
 logger.error('Message or obj', ...);
 logger.warn('Message or obj', ...);
