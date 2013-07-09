@@ -1,7 +1,7 @@
 {
   "name": "coolog",
   "author": "Simone Lusenti <simone@plasticpanda.com>",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Colorful logging in NodeJS.",
   "homepage": "http://github.com/plasticpanda/coolog",
   "keywords": [
