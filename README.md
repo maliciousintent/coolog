@@ -32,4 +32,4 @@ logger.ok('Message or obj', ...);
 ```
 
 
-See [this gist](https://gist.github.com/lusentis/5957823) for Logentries integration.
+See [this gist](https://gist.github.com/lusentis/5957823) for **[Logentries](http://logentries.com) integration**.
