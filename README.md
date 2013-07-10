@@ -6,14 +6,14 @@ Colourful logging in node.js
 
 ## Install ##
 
-```
+```bash
 npm -S install coolog
 ```
 
 
 ## Use ##
 
-```nodejs
+```js
 var coolog = require('coolog')
   , logger = coolog.logger('main.js', true /* don't be verbose */);
   
@@ -30,3 +30,6 @@ logger.info('Message or obj', ...);
 logger.debug('Message or obj', ...);
 logger.ok('Message or obj', ...);
 ```
+
+
+See [this gist](https://gist.github.com/lusentis/5957823) for Logentries integration.
