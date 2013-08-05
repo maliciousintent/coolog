@@ -49,4 +49,27 @@ You can omit the channelname parameter, coolog assign this logger to the root ch
 Note that the channel must be defined in the settings file.
 
 ## CUSTOM APPENDERS ##
-More details soon! :)
+Developers can create custom appenders.
+
+In coolog an appender is just a module that exports a function
+
+```js
+module.exports = function (settings) {
+  
+}
+```
+
+```settings``` is a variable which contains the options specified by the user in the coolog.json file.
+
+The function should export an object with a ```log``` method. 
+
+The method should has this sign
+```js
+function (level_name, channel_name, filename, args)
+```
+* level_name is the level of the message (debug, log, info, warn, error, ok)
+* channel_name is the name of the channel
+* filename is the name of the file in which the function has been invoked
+* args is the array of the arguments passed by the user
+
+
