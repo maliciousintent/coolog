@@ -1,0 +1,12 @@
+{
+  "channels": {
+    "root": {
+      "level": "debug",
+      "appender": "console"
+    },
+    "database": {
+      "level": "warn",
+      "appender": "console"
+    }
+  }
+}

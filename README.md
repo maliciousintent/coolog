@@ -7,7 +7,7 @@ Colourful logging in node.js
 ## Install ##
 
 ```bash
-npm -S install coolog
+Not yet :)
 ```
 
 
@@ -15,13 +15,8 @@ npm -S install coolog
 
 ```js
 var coolog = require('coolog')
-  , logger = coolog.logger('main.js', true /* don't be verbose */);
+  , logger = coolog.logger('main.js', 'root');
   
-  
-coolog.on('log', function () {
-  // Global event handler
-  console.log(arguments);
-});
   
 logger.log('Message or obj', ...);
 logger.error('Message or obj', ...);
@@ -32,4 +27,3 @@ logger.ok('Message or obj', ...);
 ```
 
 
-See [this gist](https://gist.github.com/lusentis/5957823) for **[Logentries](http://logentries.com) integration**.
