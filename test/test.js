@@ -42,6 +42,11 @@ db_logger.warn('Hello ', string_variable);
 db_logger.error('Hello ', string_variable);
 db_logger.ok('Hello ', string_variable);
 
+// complex messages 
 root_logger.debug('Hi, i\'m an object ', obj_variable);
 root_logger.debug('Hi, i\'m an array ', arr_variable);
 root_logger.debug('Hi, i\'m a nested object ', nested_obj_variable);
+
+db_logger.ok('Hi, i\'m an object ', obj_variable);
+db_logger.ok('Hi, i\'m an array ', arr_variable);
+db_logger.ok('Hi, i\'m a nested object ', nested_obj_variable);

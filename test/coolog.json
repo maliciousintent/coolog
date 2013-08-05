@@ -6,7 +6,12 @@
     },
     "database": {
       "level": "warn",
-      "appender": "console"
+      "appender": "file"
+    }
+  },
+  "appenders" : {
+    "file": {
+      "output_file": "out.log"
     }
   }
 }

@@ -5,7 +5,7 @@ Colourful logging in node.js
 
 This version is a rework of the original library with two new main features:
 
-*  Mechanism to create custom appenders (file, console, online services..)
+*  Mechanism to create custom appenders (file, console, online services..) using NPM. There are some built-in appenders too
 *  Filter message to log (based on the log level)
 
 
@@ -48,3 +48,5 @@ This method create a new logger.
 You can omit the channelname parameter, coolog assign this logger to the root channel by default.
 Note that the channel must be defined in the settings file.
 
+## CUSTOM APPENDERS ##
+More details soon! :)
