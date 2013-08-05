@@ -22,6 +22,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "coolog-logentries-appender": "git+ssh://git@github.com:bolismauro/coolog-logentries-appender.git"
   }
 }

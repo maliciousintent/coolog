@@ -42,11 +42,14 @@ See test/coolog.json file for more info.
 
 ## API ##
 ```
-coolog.logger(filename, channelname);
+coolog.logger(filename, params);
 ```
 This method create a new logger.
-You can omit the channelname parameter, coolog assign this logger to the root channel by default.
-Note that the channel must be defined in the settings file.
+
+* filename is the name of the file (used in the log message)
+* params is optional. You can provide the name of the channel (channelname) and additional settings for the appender (eg: a secret key which you don't want to put in the settings file). If you
+  don't specify this parameter coolog assign this logger to the default channel (root).
+  
 
 ## CUSTOM APPENDERS ##
 Developers can create custom appenders.
@@ -67,9 +70,12 @@ The method should has this sign
 ```js
 function (level_name, channel_name, filename, args)
 ```
+
 * level_name is the level of the message (debug, log, info, warn, error, ok)
 * channel_name is the name of the channel
 * filename is the name of the file in which the function has been invoked
 * args is the array of the arguments passed by the user
 
+## APPENDER LIST ##
+[Logentries appender](https://github.com/bolismauro/coolog-logentries-appender)
 

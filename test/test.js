@@ -6,6 +6,10 @@ var coolog = require('../index.js');
 
 var root_logger = coolog.logger('main.js') // root by default
   , db_logger = coolog.logger('main.js', 'database')
+  , logentries_logger = coolog.logger('main.js', {
+    'channelname': 'logentries'
+  , 'key': 'your key here'
+  })
   ;
 
 var string_variable = 'world'
@@ -54,4 +58,6 @@ db_logger.ok('Hi, i\'m a nested object ', nested_obj_variable);
 
 // multi-line messages
 root_logger.debug('I\'m a \nmultiline \nmessage\nwith an object', nested_obj_variable, '\n(a nested one!)');
-db_logger.ok('I\'m a \n multiline \n message');
+
+// try an external appender
+logentries_logger.ok('Hi, i\'m a nested object ', nested_obj_variable);
