@@ -30,7 +30,7 @@ module.exports = function () {
     if (msg.indexOf('\n') > -1) {
       // If string is multiline call _log for each string
       msg.split('\n').forEach(function (row) {
-        _log_helper(level_name, channel_name, color, line, row);
+        _log_helper(level_name, channel_name, filename, color, line, row);
       });
       
     } else {

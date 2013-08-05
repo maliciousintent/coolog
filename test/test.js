@@ -50,3 +50,8 @@ root_logger.debug('Hi, i\'m a nested object ', nested_obj_variable);
 db_logger.ok('Hi, i\'m an object ', obj_variable);
 db_logger.ok('Hi, i\'m an array ', arr_variable);
 db_logger.ok('Hi, i\'m a nested object ', nested_obj_variable);
+
+
+// multi-line messages
+root_logger.debug('I\'m a \nmultiline \nmessage\nwith an object', nested_obj_variable, '\n(a nested one!)');
+db_logger.ok('I\'m a \n multiline \n message');

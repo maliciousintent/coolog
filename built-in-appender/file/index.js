@@ -7,7 +7,6 @@ var util = require('util')
 module.exports = function (settings) {
   var log
     , _getLine
-    , _log_helper
     , file_stream
     ;
 
@@ -24,19 +23,6 @@ module.exports = function (settings) {
     return line;
   }; 
 
-  _log_helper = function (level_name, channel_name, filename, line, msg) {
-    
-    if (msg.indexOf('\n') > -1) {
-      // If string is multiline call _log for each string
-      msg.split('\n').forEach(function (row) {
-        _log_helper(level_name, channel_name, line, row);
-      });
-      
-    } else {
-      file_stream.write('[' + channel_name + ', ' + filename + ':' + line + '] ' + level_name + ' : ' + msg + '\n');
-    }
-  };
-
   log = function (level_name, channel_name, filename, args) {
     var msg = ''
       , line = _getLine()
@@ -50,7 +36,7 @@ module.exports = function (settings) {
       }
     });
 
-    _log_helper(level_name, channel_name, filename, line, msg);
+    file_stream.write('[' + channel_name + ', ' + filename + ':' + line + '] ' + level_name + ' : ' + msg + '\n');
 
   };
 
