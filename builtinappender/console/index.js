@@ -1,7 +1,7 @@
 /*jshint node:true, indent:2, white:true, laxcomma:true, undef:true, strict:true, unused:true, eqnull:true, camelcase: false */
 'use strict';
 
-var util = require('util');
+var inspect = require('seye.js').inspector({ stream: null });
 
 var COLOR_MAP = {
   'log'   : 'white'
@@ -52,9 +52,9 @@ module.exports = function () {
 
     args.forEach(function (item) {
       if ('string' !== typeof item) {
-        msg = msg + util.inspect(item);
+        msg = msg + inspect(item) + ' ';
       } else {
-        msg = msg + item;
+        msg = msg + item + ' ';
       }
     });
 

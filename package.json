@@ -22,7 +22,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "colors": "~0.6.0-1"
+    "colors": "~0.6.0-1",
+    "seye.js": "~0.2.1"
   },
   "devDependencies": {
     "coolog-logentries-appender": "git+ssh://git@github.com:plasticpanda/coolog-logentries-appender.git"
