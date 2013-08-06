@@ -1,1 +1,1 @@
-module.exports = require('./lib/clog.js');
+module.exports = require('./lib/coolog.js');
