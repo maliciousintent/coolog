@@ -1,7 +1,7 @@
 {
   "name": "coolog",
   "author": "Simone Lusenti <simone@plasticpanda.com>",
-  "version": "0.3.0",
+  "version": "2.0.0",
   "description": "Colorful logging in NodeJS.",
   "homepage": "http://github.com/plasticpanda/coolog",
   "keywords": [
@@ -23,8 +23,8 @@
   "license": "MIT",
   "dependencies": {
     "colors": "~0.6.0-1",
-    "coolog-logentries-appender": "git+ssh://git@github.com:bolismauro/coolog-logentries-appender.git",
-    "eyes": "~0.1.8",
-    "spyglass": "~1.0.1"
+  },
+  "devDependencies": {
+    "coolog-logentries-appender": "git+ssh://git@github.com:plasticpanda/coolog-logentries-appender.git"
   }
 }
