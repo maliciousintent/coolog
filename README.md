@@ -13,7 +13,7 @@ This version is a rework of the original library with two new main features:
 ## Install ##
 
 ```bash
-Not yet :)
+npm install coolog
 ```
 
 

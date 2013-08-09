@@ -10,7 +10,7 @@ coolog.keychan['coolog-logentries-appender'] = {
 
 var root_logger = coolog.logger('main.js') // root by default
   , db_logger = coolog.logger('main.js', 'database')
-  , logentries_logger = coolog.logger('main.js', 'logentries')
+  , logentries_logger = coolog.logger('test.js', 'logentries')
   ;
 
 var string_variable = 'world'

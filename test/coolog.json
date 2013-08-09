@@ -2,15 +2,15 @@
   "channels": {
     "root": {
       "level": "debug",
-      "appender": "console"
+      "appenders": ["console"]
     },
     "database": {
       "level": "warn",
-      "appender": "file"
+      "appenders": ["console", "file"]
     },
     "logentries": {
       "level": "debug",
-      "appender": "coolog-logentries-appender"
+      "appenders": ["coolog-logentries-appender"]
     }
   },
   "appenders" : {

@@ -21,7 +21,7 @@ module.exports = function () {
 
   _getLine = function () {
     var e = new Error();
-    var line = e.stack.split('\n')[4].split(':')[1];
+    var line = e.stack.split('\n')[6].split(':')[1];
     return line;
   }; 
 
