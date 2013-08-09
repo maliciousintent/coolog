@@ -4,12 +4,13 @@
 
 var coolog = require('../index.js');
 
+coolog.keychan['coolog-logentries-appender'] = {
+  'key': process.env.LOGENTRIES_KEY
+};
+
 var root_logger = coolog.logger('main.js') // root by default
   , db_logger = coolog.logger('main.js', 'database')
-  , logentries_logger = coolog.logger('main.js', {
-    'channelname': 'logentries'
-  , 'key': 'your key here'
-  })
+  , logentries_logger = coolog.logger('main.js', 'logentries')
   ;
 
 var string_variable = 'world'
