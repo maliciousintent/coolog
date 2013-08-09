@@ -75,7 +75,7 @@ function (level_name, channel_name, filename, args)
 * filename is the name of the file in which the function has been invoked
 * args is the array of the arguments passed by the user
 
-## KEYCHAN ##
+## KEYCHAIN ##
 Coolog offer a keychan object to add some parameters for the appender that you don't want to put in the config file (eg: a log web service api key)
 ```js
 var coolog = require('coolog');

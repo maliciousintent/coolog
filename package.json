@@ -7,7 +7,7 @@
       "email": "mauro@plasticpanda.com"
     } 
   ],
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Colorful logging in NodeJS.",
   "homepage": "http://github.com/plasticpanda/coolog",
   "keywords": [

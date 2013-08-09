@@ -1,10 +1,37 @@
 /*jshint node:true, indent:2, white:true, laxcomma:true, undef:true, strict:true, unused:true, eqnull:true, camelcase: false */
 'use strict';
 
+/*
+ * Coolog - Colorful console output for your applications in NodeJS
+ * https://github.com/plasticpanda/coolog
+ *
+ * Simone Lusenti <simone@plasticpanda.com>, Mauro Bolis <mauro@plasticpanda.com>
+ * 
+ * Copyright (c) 2013 Simone Lusenti, Mauro Bolis & Plastic Panda
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
 
 var coolog = require('../index.js');
 
-coolog.keychan['coolog-logentries-appender'] = {
+coolog.keychain['coolog-logentries-appender'] = {
   'key': process.env.LOGENTRIES_KEY
 };
 
