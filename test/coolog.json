@@ -10,7 +10,7 @@
     },
     "logentries": {
       "level": "debug",
-      "appenders": ["coolog-logentries-appender"]
+      "appenders": ["coolog-appender-logentries"]
     }
   },
   "appenders" : {

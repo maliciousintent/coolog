@@ -31,7 +31,7 @@
 
 var coolog = require('../index.js');
 
-coolog.keychain['coolog-logentries-appender'] = {
+coolog.keychain['coolog-appender-logentries'] = {
   'key': process.env.LOGENTRIES_KEY
 };
 
