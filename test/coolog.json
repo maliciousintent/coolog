@@ -1,0 +1,21 @@
+{
+  "channels": {
+    "root": {
+      "level": "debug",
+      "appenders": ["console"]
+    },
+    "database": {
+      "level": "warn",
+      "appenders": ["console", "file"]
+    },
+    "logentries": {
+      "level": "debug",
+      "appenders": ["coolog-logentries-appender"]
+    }
+  },
+  "appenders" : {
+    "file": {
+      "output_file": "out.log"
+    }
+  }
+}
