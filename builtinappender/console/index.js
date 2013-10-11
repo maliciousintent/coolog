@@ -3,6 +3,7 @@
 
 var inspect = require('seye.js').inspector({ stream: null })
   , chalk = require('chalk')
+  , cluster = require('cluster')
   ;
 
 var COLOR_MAP = {
@@ -56,6 +57,7 @@ module.exports = function () {
     } else {  
       console.log.apply(console, [
           chalk.bold.grey('[') + chalk[channel_name_color](channel_name + ', ') + chalk.blue(filename + ':' + line) + chalk.bold.grey(']')
+        , chalk.cyan((cluster.isWorker) ? '#' + cluster.worker.id : 'mm')
         , chalk[color](level_name + ':')
         , msg 
         ].concat('')
