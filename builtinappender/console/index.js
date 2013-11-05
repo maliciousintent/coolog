@@ -48,7 +48,8 @@ module.exports = function () {
   }; 
 
   _log_helper = function (level_name, channel_name, filename, color, line, msg) {
-    var channel_name_color = _generate_color(channel_name);
+    var channel_name_color = _generate_color(channel_name)
+      , level_name_str;
 
     if (msg.indexOf('\n') > -1) {
       // If string is multiline call _log for each string
@@ -56,11 +57,19 @@ module.exports = function () {
         _log_helper(level_name, channel_name, filename, color, line, row);
       });
       
-    } else {  
+    } else {
+      level_name_str = level_name;
+      
+      if (level_name_str.length < 5) {
+        for (var i = 5 - level_name_str.length; i > 0; i--) {
+          level_name_str = ' ' + level_name_str;
+        }
+      }
+      
       console.log.apply(console, [
           chalk.bold.grey('[') + chalk[channel_name_color](channel_name + ', ') + chalk.blue(filename + ':' + line) + chalk.bold.grey(']')
         , chalk.cyan((cluster.isWorker) ? '#' + cluster.worker.id : 'mm')
-        , chalk[color](level_name + ':')
+        , chalk[color](level_name_str + ':')
         , msg 
         ].concat('')
       );
