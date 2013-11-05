@@ -15,6 +15,8 @@ var COLOR_MAP = {
 , 'debug' : 'grey'
 };
 
+// always enable chalk
+chalk.enabled = true;
 
 // we can receive a param 
 module.exports = function () {
