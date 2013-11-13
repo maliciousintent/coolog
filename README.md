@@ -42,7 +42,7 @@ logger.ok('Message or obj', ...);
 
 
 ## Settings ##
-See test/coolog.json file for more info.
+See test/test.js file for more info.
 
 
 ## API ##
