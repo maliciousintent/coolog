@@ -9,7 +9,7 @@
  * 
  * Copyright (c) 2013 Simone Lusenti, Mauro Bolis & Plastic Panda
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the 'Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -31,13 +31,37 @@
 
 var coolog = require('../index.js');
 
-coolog.keychain['coolog-appender-logentries'] = {
-  'key': process.env.LOGENTRIES_KEY
-};
+coolog.addChannel({ 
+  name: 'root',
+  level: 'debug', 
+  appenders: [
+    'console'
+  ] 
+});
+
+coolog.addChannel({ 
+  name: 'database',
+  level: 'warn', 
+  appenders: [
+    'console'
+  ] 
+});
+
+
+coolog.addChannel({ 
+  name: 'logentries',
+  level: 'warn', 
+  appenders: [
+    'console', require('coolog-appender-logentries')('d5519875-8aa1-413c-97f4-be174fddb097')
+  ] 
+});
+
+
+
 
 var root_logger = coolog.logger('main.js') // root by default
   , db_logger = coolog.logger('main.js', 'database')
-  , logentries_logger = coolog.logger('test.js', 'logentries')
+  , logentries_logger = coolog.logger('main.js', 'logentries')
   ;
 
 var string_variable = 'world'

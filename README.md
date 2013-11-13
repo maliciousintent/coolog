@@ -20,10 +20,18 @@ npm install coolog
 ## Use ##
 
 ```js
-var coolog = require('coolog')
-  , logger = coolog.logger('main.js', 'root');
-  
-  
+var coolog = require('../index.js');
+
+coolog.addChannel({ 
+  name: 'root',
+  level: 'debug', 
+  appenders: [
+    'console'
+  ] 
+});
+
+var logger = coolog.logger('main.js', 'root'); //root is optional
+
 logger.log('Message or obj', ...);
 logger.error('Message or obj', ...);
 logger.warn('Message or obj', ...);
@@ -34,13 +42,17 @@ logger.ok('Message or obj', ...);
 
 
 ## Settings ##
-Coolog need a settings file named coolog.json in the root directory.
-This file defines the channels and the appenders settings.
-This file must contains at least the root channel options.
 See test/coolog.json file for more info.
 
 
 ## API ##
+
+```
+coolog.addChannel({...});
+```
+Add a new channel to coolog. You can specify the name, the level of the channel (debug, warn...) and 
+the appenders to use.
+
 ```
 coolog.logger(filename, channel);
 ```
@@ -75,20 +87,11 @@ function (level_name, channel_name, filename, args)
 * filename is the name of the file in which the function has been invoked
 * args is the array of the arguments passed by the user
 
-## KEYCHAIN ##
-Coolog offer a keychan object to add some parameters for the appender that you don't want to put in the config file (eg: a log web service api key)
-```js
-var coolog = require('coolog');
 
-coolog.keychan['appender-name'] = {
-  'key': process.env.KEY
-};  
-
-```
 
 
 ## APPENDER LIST ##
-[Logentries appender](https://github.com/bolismauro/coolog-logentries-appender)
+[Logentries appender](https://github.com/plasticpanda/coolog-logentries-appender)
 
 
 

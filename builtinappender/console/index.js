@@ -37,7 +37,7 @@ module.exports = function () {
       hash = hash & hash; // Convert to 32bit integer
     }
     
-    key = Object.keys(COLOR_MAP)[hash % Object.keys(COLOR_MAP).length];
+    key = Object.keys(COLOR_MAP)[Math.abs(hash) % Object.keys(COLOR_MAP).length];
     return COLOR_MAP[key];
   };
 
