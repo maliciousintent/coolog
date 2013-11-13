@@ -52,7 +52,7 @@ coolog.addChannel({
   name: 'logentries',
   level: 'warn', 
   appenders: [
-    'console', require('coolog-appender-logentries')('d5519875-8aa1-413c-97f4-be174fddb097')
+    'console', require('coolog-appender-logentries')(process.env.LOGENTRIES_KEY)
   ] 
 });
 
