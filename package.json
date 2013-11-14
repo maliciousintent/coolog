@@ -33,6 +33,6 @@
     "chalk": "~0.2.1"
   },
   "devDependencies": {
-    "coolog-logentries-appender": "git+ssh://git@github.com:plasticpanda/coolog-appender-logentries.git"
+    "coolog-appender-logentries": "~0.2.0"
   }
 }
