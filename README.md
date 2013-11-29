@@ -1,6 +1,13 @@
 Coolog
 ======
 
+
+## TODO ##
+- write docs
+- write tests
+- write examples
+
+
 Colourful logging in node.js
 
 This version is a rework of the original library with two new main features:
