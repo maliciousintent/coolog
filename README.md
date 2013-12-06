@@ -1,10 +1,10 @@
+[![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
+
 coolog
 ======
 
 Colorful logging for node.js.
 
-
-[![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
 
 ## Install
 
@@ -13,29 +13,25 @@ Colorful logging for node.js.
 
 ## Features
 
-This version is a rework of the original library with two new main features:
+
 
 *  Mechanism to create custom appenders (file, console, online services..) using NPM. There are some built-in appenders too
 *  Filter message to log (based on the log level)
 
 
 
-
-
 ## Use ##
 
 ```js
-var coolog = require('../index.js');
+var coolog = require('coolog');
 
 coolog.addChannel({ 
   name: 'root',
   level: 'debug', 
-  appenders: [
-    'console'
-  ] 
+  appenders: [ 'console' ] 
 });
 
-var logger = coolog.logger('main.js', 'root'); //root is optional
+var logger = coolog.logger('main.js', 'root');
 
 logger.log('Message or obj', ...);
 logger.error('Message or obj', ...);
@@ -46,26 +42,42 @@ logger.ok('Message or obj', ...);
 ```
 
 
-## Settings ##
-See test/test.js file for more info.
-
 
 ## API ##
 
+#### Add a new channel
+
 ```
-coolog.addChannel({...});
+coolog.addChannel(options);
 ```
-Add a new channel to coolog. You can specify the name, the level of the channel (debug, warn...) and 
-the appenders to use.
+
+Adds a new channel to coolog.  
+Since in nodejs the modules ```require```d are cached, channels are global and available in every file so it's better do define all channels in a single place, e.g. in your app's entry point.
+
+**Options**
+* ```name``` name for this channel. A ```root``` channel should be always defined. This name must be passed to the .logger(...) method to create the logger instance.
+* ```level``` minimum log level for this channel. Messages with lower severity will not be passed to any appender.
+* ```appenders[]``` list of appenders to pass messages to. Built-in appenders (currently only ```console``` must be referenced by name. For NPM-installed or custom appenders a reference / function must be provided.
+
+
+#### Get a logger
 
 ```
 coolog.logger(filename, channel);
 ```
-This method create a new logger.
 
-* filename is the name of the file (used in the log message)
-* Channel is optional. If you don't specify this parameter coolog assign this logger to the default channel (root).
-  
+This method create a new logger for the specified ```channel```.
+
+* A string to prepend to all log messages, typically you want to set this to the current file's name, it will be suffixed with the number of the line printing that message.
+* The channel to log to. Must be added before with ```coolog.addChannel(...)```. Default is ```'root'```.
+
+
+
+## Examples ##
+
+See ```examples/``` for more examples or **contribute**.
+
+
 
 ## CUSTOM APPENDERS ##
 Developers can create custom appenders.
