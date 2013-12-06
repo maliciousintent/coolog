@@ -33,6 +33,5 @@
     "chalk": "~0.2.1"
   },
   "devDependencies": {
-    "coolog-appender-logentries": "~0.2.0"
   }
 }

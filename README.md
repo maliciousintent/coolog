@@ -1,16 +1,17 @@
-Coolog
+coolog
 ======
+
+Colorful logging for node.js.
+
 
 [![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
 
+## Install
 
-## TODO ##
-- write docs
-- write tests
-- write examples
+[![NPM](https://nodei.co/npm/coolog.png?compact=true)](https://nodei.co/npm/coolog/)
 
 
-Colourful logging in node.js
+## Features
 
 This version is a rework of the original library with two new main features:
 
@@ -19,11 +20,6 @@ This version is a rework of the original library with two new main features:
 
 
 
-## Install ##
-
-```bash
-npm install coolog
-```
 
 
 ## Use ##
