@@ -1,4 +1,4 @@
-/*jshint node:true, indent:2, white:true, laxcomma:true, undef:true, strict:true, unused:true, eqnull:true, camelcase: false */
+/*jshint node:true, indent:2, laxcomma:true, undef:true, unused:true, eqnull:true */
 'use strict';
 
 var inspect = require('seye.js').inspector({ stream: null })
@@ -7,37 +7,43 @@ var inspect = require('seye.js').inspector({ stream: null })
   ;
 
 var COLOR_MAP = {
-  'log'   : 'white'
-, 'error' : 'red'
-, 'warn'  : 'yellow'
-, 'info'  : 'cyan'
-, 'ok'    : 'green'
-, 'debug' : 'grey'
+  log: 'white'
+, error: 'red'
+, warn: 'yellow'
+, info: 'cyan'
+, ok: 'green'
+, debug: 'grey'
 };
 
-// always enable chalk
+// always enable chalk's colors
 chalk.enabled = true;
 
-// we can receive a param 
-module.exports = function () {
-  var log
-    , _getLine
+module.exports = {
+  log: makeLogger()
+};
+
+
+function makeLogger() {
+  var _getLine
     , _log_helper
-    , _generate_color;
+    , _generate_color
+    ;
 
   _generate_color = function (str) {
     var hash = 0
       , c
       , key;
 
-    if (str.length === 0) return hash;
-    for (var i = 0; i < str.length; i++) {
-      c = str.charCodeAt(i);
-      hash = ((hash<<5) - hash) + c;
-      hash = hash & hash; // Convert to 32bit integer
+    if (str.length === 0) {
+      return hash;
     }
     
-    key = Object.keys(COLOR_MAP)[Math.abs(hash) % Object.keys(COLOR_MAP).length];
+    for (var i = 0; i < str.length; i++) {
+      c = str.charCodeAt(i);
+      hash = hash + c;
+    }
+    
+    key = Object.keys(COLOR_MAP)[hash % (Object.keys(COLOR_MAP).length - 1)];
     return COLOR_MAP[key];
   };
 
@@ -47,14 +53,21 @@ module.exports = function () {
     return line;
   }; 
 
-  _log_helper = function (level_name, channel_name, filename, color, line, msg) {
+  _log_helper = function (options, msg) {
+    var level_name = options.level_name
+      , channel_name = options.channel_name
+      , filename = options.filename
+      , color = options.color
+      , line = options.line
+      ;
+    
     var channel_name_color = _generate_color(channel_name)
       , level_name_str;
 
     if (msg.indexOf('\n') > -1) {
       // If string is multiline call _log for each string
       msg.split('\n').forEach(function (row) {
-        _log_helper(level_name, channel_name, filename, color, line, row);
+        _log_helper(options, row);
       });
       
     } else {
@@ -76,7 +89,8 @@ module.exports = function () {
     }
   };
 
-  log = function (level_name, channel_name, filename, args) {
+
+  function _logFn(level_name, channel_name, filename, args) {
     var msg = ''
       , color
       , line = _getLine()
@@ -96,11 +110,15 @@ module.exports = function () {
       color = COLOR_MAP[level_name];
     }    
 
-    _log_helper(level_name, channel_name, filename, color, line, msg);
+    _log_helper({
+      level_name: level_name
+    , channel_name: channel_name
+    , filename: filename
+    , color: color
+    , line: line
+    }, msg);
 
-  };
+  }
 
-  return {
-    'log': log
-  };
-};
+  return _logFn;
+}
