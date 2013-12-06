@@ -9,8 +9,13 @@ Colorful logging for node.js.
 
 ## Features
 
-*  Mechanism to create custom appenders (file, console, online services..) using NPM. There are some built-in appenders too
-*  Filter message to log (based on the log level)
+* six log levels *with different colors*
+* multiple configurable channels *with different colors*
+* multiple and custom appenders (e.g. to send logs to 3rd-party services)
+* line numbers to quickly find where log messages are printed
+* pretty formatting of objects, arrays, strings, numbers, regexps, boolean, null, ... via util.inspect and [seye.js](https://github.com/plasticpanda/seye.js)
+* multi-lines logs are properly formatted
+* node ```cluster``` support, distingush between master and workers
 
 
 
@@ -77,7 +82,7 @@ This method create a new logger for the specified ```channel```.
 
 ### Custom appenders
 
-Any module which exports a ```log``` function with the following signature can be used as a **coolog appender**:
+Anything, with a ```log``` method having the following signature, can be used as a **coolog appender**:
 
 ```javascript
 var myLoggingFn = function (level_name, channel_name, filename, args) {
@@ -102,8 +107,6 @@ var myLoggingFn = function (level_name, channel_name, filename, args) {
 module.exports = {
   log: myLoggingFn
 };
-
-
 ```
 
 * ```level_name``` is the level of the message, one of: ```debug```, ```log```, ```info```, ```warn```, ```error```, ```ok```.
@@ -115,27 +118,17 @@ module.exports = {
 
 
 ## Available appenders
+* ```console``` (built-in)
 * [![NPM](https://nodei.co/npm/coolog-appender-logentries.png?mini=true)](https://nodei.co/npm/coolog-appender-logentries/)
 
 
 
-## License ##
+## License (MIT) ##
 
-Copyright (c) 2013 PlasticPanda.com, Mauro Bolis <mauro@plasticpanda.com>, Simone Lusenti <simone@plasticpanda.com>
+Copyright © 2013 Plastic Panda, Mauro Bolis <mauro@plasticpanda.com>, Simone Lusenti <simone@plasticpanda.com>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WIT
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
