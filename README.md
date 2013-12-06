@@ -1,6 +1,8 @@
 Coolog
 ======
 
+[![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
+
 
 ## TODO ##
 - write docs
