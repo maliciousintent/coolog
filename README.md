@@ -1,41 +1,42 @@
+[![NPM version](https://badge.fury.io/js/coolog.png)](http://badge.fury.io/js/coolog) [![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
+
 coolog
 ======
 
 Colorful logging for node.js.
 
+![Screenshot](https://raw.github.com/plasticpanda/coolog/master/examples/simple.png)
 
-[![Code Climate](https://codeclimate.com/github/plasticpanda/coolog.png)](https://codeclimate.com/github/plasticpanda/coolog)
+## Features
+
+* six log levels *with different colors*
+* multiple configurable channels *with different colors*
+* multiple and custom appenders (e.g. to send logs to 3rd-party services)
+* line numbers to quickly find where log messages are printed
+* pretty formatting of objects, arrays, strings, numbers, regexps, boolean, null, ... via util.inspect and [seye.js](https://github.com/plasticpanda/seye.js)
+* multi-lines logs are properly formatted
+* node ```cluster``` support, distingush between master and workers
+
+
 
 ## Install
 
 [![NPM](https://nodei.co/npm/coolog.png?compact=true)](https://nodei.co/npm/coolog/)
 
 
-## Features
-
-This version is a rework of the original library with two new main features:
-
-*  Mechanism to create custom appenders (file, console, online services..) using NPM. There are some built-in appenders too
-*  Filter message to log (based on the log level)
-
-
-
-
 
 ## Use ##
 
 ```js
-var coolog = require('../index.js');
+var coolog = require('coolog');
 
 coolog.addChannel({ 
   name: 'root',
   level: 'debug', 
-  appenders: [
-    'console'
-  ] 
+  appenders: [ 'console' ] 
 });
 
-var logger = coolog.logger('main.js', 'root'); //root is optional
+var logger = coolog.logger('main.js', 'root');
 
 logger.log('Message or obj', ...);
 logger.error('Message or obj', ...);
@@ -45,78 +46,89 @@ logger.debug('Message or obj', ...);
 logger.ok('Message or obj', ...);
 ```
 
-
-## Settings ##
-See test/test.js file for more info.
+See ```examples/``` for more examples.
 
 
 ## API ##
 
-```
-coolog.addChannel({...});
-```
-Add a new channel to coolog. You can specify the name, the level of the channel (debug, warn...) and 
-the appenders to use.
+#### Add a new channel
 
 ```
-coolog.logger(filename, channel);
+coolog.addChannel(options);
 ```
-This method create a new logger.
 
-* filename is the name of the file (used in the log message)
-* Channel is optional. If you don't specify this parameter coolog assign this logger to the default channel (root).
+Adds a new channel to coolog.  
+Since [```require```d modules are cached](http://nodejs.org/docs/latest/api/modules.html#modules_caching), channels are global and available in every file. It's better to define all channels in a single place, e.g. in your app's entry point.
+
+**Options**
+* ```name``` name for this channel. A ```root``` channel should be always defined. This name must be passed to the ```coolog.logger(...)``` method to create the logger instance.
+* ```level``` minimum log level for this channel. Messages with lower severity will not be passed to any appender.
+* ```appenders[]``` list of appenders to pass messages to. Built-in appenders must be referenced by name whereas, npm-minstalled or custom appenders a reference / function must be provided.
+
+
+#### Get a logger
+
+```
+coolog.logger(filename[, channel]);
+```
+
+This method create a new logger for the specified ```channel```.
+
+* A string to prepend to all log messages, typically you want to set this to the current file's name (it will be suffixed with the number of the line printing that message).
+* The channel to log to. It must have been be added earlier with ```coolog.addChannel(...)```. Default is ```'root'```.
+
+
+## Contribute
+
+### Custom appenders
+
+Anything, with a ```log``` method having the following signature, can be used as a **coolog appender**:
+
+```javascript
+var myLoggingFn = function (level_name, channel_name, filename, args) {
+  var myArgs = args.map(function (item) {
+    if ('string' !== typeof item) {
+      return util.inspect(item);
+    } else {
+      return item;
+    }
+  });
   
-
-## CUSTOM APPENDERS ##
-Developers can create custom appenders.
-
-In coolog an appender is just a module that exports a function
-
-```js
-module.exports = function (settings) {
+  myArgs = myArgs.join(' ');
   
-}
+  _send_to_my_logging_service(level_name, channel_name, filename, myArgs);
+  
+  if (level_name === 'error') {
+    _alert_someone(channel_name, filename, myArgs);
+  }
+};
+
+
+module.exports = {
+  log: myLoggingFn
+};
 ```
 
-```settings``` is a variable which contains the options specified by the user in the coolog.json file.
-
-The function should export an object with a ```log``` method. 
-
-The method should has this sign
-```js
-function (level_name, channel_name, filename, args)
-```
-
-* level_name is the level of the message (debug, log, info, warn, error, ok)
-* channel_name is the name of the channel
-* filename is the name of the file in which the function has been invoked
-* args is the array of the arguments passed by the user
+* ```level_name``` is the level of the message, one of: ```debug```, ```log```, ```info```, ```warn```, ```error```, ```ok```.
+* ```channel_name``` is the name of the channel which is sending this message.
+* ```filename``` is the name of the file at which the logging function has been invoked.
+* ```args``` is an array containing the arguments passed by the user.
 
 
 
 
-## APPENDER LIST ##
-[Logentries appender](https://github.com/plasticpanda/coolog-logentries-appender)
+## Available appenders
+* ```console``` (built-in)
+* [![NPM](https://nodei.co/npm/coolog-appender-logentries.png?mini=true)](https://nodei.co/npm/coolog-appender-logentries/)
 
 
 
-## License ##
+## License (MIT) ##
 
-Copyright (c) 2013 PlasticPanda.com, Mauro Bolis <mauro@plasticpanda.com>, Simone Lusenti <simone@plasticpanda.com>
+Copyright © 2013 Plastic Panda, Mauro Bolis <mauro@plasticpanda.com>, Simone Lusenti <simone@plasticpanda.com>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WIT
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
